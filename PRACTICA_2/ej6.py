@@ -1,0 +1,12 @@
+ls = []
+s1 = input("Instertar string 1: ")
+s2 = input("Instertar string 2: ")
+s3 = input("Instertar string 3: ")
+s4 = input("Instertar string 4: ")
+s5 = input("Instertar string 5: ")
+ls.append(s1)
+ls.append(s2)
+ls.append(s3)
+ls.append(s4)
+ls.append(s5)
+print(str(ls[::-1]))
