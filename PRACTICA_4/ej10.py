@@ -6,4 +6,4 @@ with open(folder,"r") as f:
         txt = arch.read()
         newfile += txt + "\n"
 with open(newf,"a") as nf:
-    route.write(newfile)
+    nf.write(newfile)
