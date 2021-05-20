@@ -1,0 +1,320 @@
+>>> import requests
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas/1')
+>>> r.json()
+{'id': 1, 'tipo': 'pantalon', 'talle': 35}
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas/20')
+>>> r.json()
+{'id': 20, 'tipo': 'saco', 'talle': 'XL'}
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas/400')
+>>> r.json()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+>>> r.headers
+{'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Expires': '-1', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '0', 'Etag': 'W/"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk"', 'Vary': 'Accept-Encoding', 'Date': 'Wed, 19 May 2021 22:56:38 GMT', 'Via': '1.1 vegur'}
+>>> r.status_code
+404
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+>>> r.json()
+[{'id': 1, 'tipo': 'pantalon', 'talle': 35}, {'id': 2, 'tipo': 'pantalon', 'talle': 36}, {'id': 3, 'tipo': 'pantalon', 'talle': 37}, {'id': 4, 'tipo': 'pantalon', 'talle': 38}, {'id': 5, 'tipo': 'pantalon', 'talle': 39}, {'id': 6, 'tipo': 'pantalon', 'talle': 40}, {'id': 7, 'tipo': 'pantalon', 'talle': 41}, {'id': 8, 'tipo': 'pantalon', 'talle': 42}, {'id': 9, 'tipo': 'pantalon', 'talle': 43}, {'id': 10, 'tipo': 'pantalon', 'talle': 44}, {'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}, {'id': 16, 'tipo': 'saco', 'talle': 'XS'}, {'id': 17, 'tipo': 'saco', 'talle': 'S'}, {'id': 18, 'tipo': 'saco', 'talle': 'M', 'enStock': False}, {'id': 19, 'tipo': 'saco', 'talle': 'L'}, {'id': 20, 'tipo': 'saco', 'talle': 'XL'}]
+>>> r.status_code
+200
+>>> r.json()['tipo']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: list indices must be integers or slices, not str
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+>>> r.json()['tipo']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: list indices must be integers or slices, not str
+>>> type(r.headers)
+<class 'requests.structures.CaseInsensitiveDict'>
+>>> r.json()['id']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: list indices must be integers or slices, not str
+>>> r.headers['Content-Type']
+'application/json; charset=utf-8'
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+>>> r.json()
+[{'id': 1, 'tipo': 'pantalon', 'talle': 35}, {'id': 2, 'tipo': 'pantalon', 'talle': 36}, {'id': 3, 'tipo': 'pantalon', 'talle': 37}, {'id': 4, 'tipo': 'pantalon', 'talle': 38}, {'id': 5, 'tipo': 'pantalon', 'talle': 39}, {'id': 6, 'tipo': 'pantalon', 'talle': 40}, {'id': 7, 'tipo': 'pantalon', 'talle': 41}, {'id': 8, 'tipo': 'pantalon', 'talle': 42}, {'id': 9, 'tipo': 'pantalon', 'talle': 43}, {'id': 10, 'tipo': 'pantalon', 'talle': 44}, {'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}, {'id': 16, 'tipo': 'saco', 'talle': 'XS'}, {'id': 17, 'tipo': 'saco', 'talle': 'S'}, {'id': 18, 'tipo': 'saco', 'talle': 'M', 'enStock': False}, {'id': 19, 'tipo': 'saco', 'talle': 'L'}, {'id': 20, 'tipo': 'saco', 'talle': 'XL'}]
+>>> r.json()['tipo']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: list indices must be integers or slices, not str
+>>> r.json()['tipo']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: list indices must be integers or slices, not str
+>>> r = requests.get('https://macowins-server.herokuapp.com/prendas?tipo=remera')
+>>> r.json()
+[{'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}]
+>>> >>> import requests
+  File "<stdin>", line 1
+    >>> import requests
+    ^
+SyntaxError: invalid syntax
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas/1')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas/1')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()
+  File "<stdin>", line 1
+    >>> r.json()
+    ^
+SyntaxError: invalid syntax
+>>> {'id': 1, 'tipo': 'pantalon', 'talle': 35}
+{'id': 1, 'tipo': 'pantalon', 'talle': 35}
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas/20')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas/20')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()
+  File "<stdin>", line 1
+    >>> r.json()
+    ^
+SyntaxError: invalid syntax
+>>> {'id': 20, 'tipo': 'saco', 'talle': 'XL'}
+{'id': 20, 'tipo': 'saco', 'talle': 'XL'}
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas/400')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas/400')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()
+  File "<stdin>", line 1
+    >>> r.json()
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1
+    Traceback (most recent call last):
+                    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>>   File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\models.py", line 900, in json
+  File "<stdin>", line 1
+    File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\models.py", line 900, in json
+IndentationError: unexpected indent
+>>>     return complexjson.loads(self.text, **kwargs)
+  File "<stdin>", line 1
+    return complexjson.loads(self.text, **kwargs)
+IndentationError: unexpected indent
+>>>   File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\__init__.py", line 346, in loads
+  File "<stdin>", line 1
+    File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\__init__.py", line 346, in loads
+IndentationError: unexpected indent
+>>>     return _default_decoder.decode(s)
+  File "<stdin>", line 1
+    return _default_decoder.decode(s)
+IndentationError: unexpected indent
+>>>   File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\decoder.py", line 337, in decode
+  File "<stdin>", line 1
+    File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\decoder.py", line 337, in decode
+IndentationError: unexpected indent
+>>>     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "<stdin>", line 1
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+IndentationError: unexpected indent
+>>>   File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\decoder.py", line 355, in raw_decode
+  File "<stdin>", line 1
+    File "C:\Users\sofig\AppData\Local\Programs\Python\Python39\lib\json\decoder.py", line 355, in raw_decode
+IndentationError: unexpected indent
+>>>     raise JSONDecodeError("Expecting value", s, err.value) from None
+  File "<stdin>", line 1
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+IndentationError: unexpected indent
+>>> json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+  File "<stdin>", line 1
+    json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+                                            ^
+SyntaxError: invalid syntax
+>>> >>> r.headers
+  File "<stdin>", line 1
+    >>> r.headers
+    ^
+SyntaxError: invalid syntax
+>>> {'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Expires': '-1', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '0', 'Etag': 'W/"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk"', 'Vary': 'Accept-Encoding', 'Date': 'Wed, 19 May 2021 22:56:38 GMT', 'Via': '1.1 vegur'}
+{'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Expires': '-1', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '0', 'Etag': 'W/"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk"', 'Vary': 'Accept-Encoding', 'Date': 'Wed, 19 May 2021 22:56:38 GMT', 'Via': '1.1 vegur'}
+>>> >>> r.status_code
+  File "<stdin>", line 1
+    >>> r.status_code
+    ^
+SyntaxError: invalid syntax
+>>> 404
+404
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()
+  File "<stdin>", line 1
+    >>> r.json()
+    ^
+SyntaxError: invalid syntax
+>>> [{'id': 1, 'tipo': 'pantalon', 'talle': 35}, {'id': 2, 'tipo': 'pantalon', 'talle': 36}, {'id': 3, 'tipo': 'pantalon', 'talle': 37}, {'id': 4, 'tipo': 'pantalon', 'talle': 38}, {'id': 5, 'tipo': 'pantalon', 'talle': 39}, {'id': 6, 'tipo': 'pantalon', 'talle': 40}, {'id': 7, 'tipo': 'pantalon', 'talle': 41}, {'id': 8, 'tipo': 'pantalon', 'talle': 42}, {'id': 9, 'tipo': 'pantalon', 'talle': 43}, {'id': 10, 'tipo': 'pantalon', 'talle': 44}, {'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}, {'id': 16, 'tipo': 'saco', 'talle': 'XS'}, {'id': 17, 'tipo': 'saco', 'talle': 'S'}, {'id': 18, 'tipo': 'saco', 'talle': 'M', 'enStock': False}, {'id': 19, 'tipo': 'saco', 'talle': 'L'}, {'id': 20, 'tipo': 'saco', 'talle': 'XL'}]
+[{'id': 1, 'tipo': 'pantalon', 'talle': 35}, {'id': 2, 'tipo': 'pantalon', 'talle': 36}, {'id': 3, 'tipo': 'pantalon', 'talle': 37}, {'id': 4, 'tipo': 'pantalon', 'talle': 38}, {'id': 5, 'tipo': 'pantalon', 'talle': 39}, {'id': 6, 'tipo': 'pantalon', 'talle': 40}, {'id': 7, 'tipo': 'pantalon', 'talle': 41}, {'id': 8, 'tipo': 'pantalon', 'talle': 42}, {'id': 9, 'tipo': 'pantalon', 'talle': 43}, {'id': 10, 'tipo': 'pantalon', 'talle': 44}, {'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}, {'id': 16, 'tipo': 'saco', 'talle': 'XS'}, {'id': 17, 'tipo': 'saco', 'talle': 'S'}, {'id': 18, 'tipo': 'saco', 'talle': 'M', 'enStock': False}, {'id': 19, 'tipo': 'saco', 'talle': 'L'}, {'id': 20, 'tipo': 'saco', 'talle': 'XL'}]
+>>> >>> r.status_code
+  File "<stdin>", line 1
+    >>> r.status_code
+    ^
+SyntaxError: invalid syntax
+>>> 200
+200
+>>> >>> r.json()['tipo']
+  File "<stdin>", line 1
+    >>> r.json()['tipo']
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1
+    Traceback (most recent call last):
+                    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>> TypeError: list indices must be integers or slices, not str
+  File "<stdin>", line 1
+    TypeError: list indices must be integers or slices, not str
+                    ^
+SyntaxError: invalid syntax
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()['tipo']
+  File "<stdin>", line 1
+    >>> r.json()['tipo']
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1
+    Traceback (most recent call last):
+                    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>> TypeError: list indices must be integers or slices, not str
+  File "<stdin>", line 1
+    TypeError: list indices must be integers or slices, not str
+                    ^
+SyntaxError: invalid syntax
+>>> >>> type(r.headers)
+  File "<stdin>", line 1
+    >>> type(r.headers)
+    ^
+SyntaxError: invalid syntax
+>>> <class 'requests.structures.CaseInsensitiveDict'>
+  File "<stdin>", line 1
+    <class 'requests.structures.CaseInsensitiveDict'>
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()['id']
+  File "<stdin>", line 1
+    >>> r.json()['id']
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1
+    Traceback (most recent call last):
+                    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>> TypeError: list indices must be integers or slices, not str
+  File "<stdin>", line 1
+    TypeError: list indices must be integers or slices, not str
+                    ^
+SyntaxError: invalid syntax
+>>> >>> r.headers['Content-Type']
+  File "<stdin>", line 1
+    >>> r.headers['Content-Type']
+    ^
+SyntaxError: invalid syntax
+>>> 'application/json; charset=utf-8'
+'application/json; charset=utf-8'
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()
+  File "<stdin>", line 1
+    >>> r.json()
+    ^
+SyntaxError: invalid syntax
+>>> [{'id': 1, 'tipo': 'pantalon', 'talle': 35}, {'id': 2, 'tipo': 'pantalon', 'talle': 36}, {'id': 3, 'tipo': 'pantalon', 'talle': 37}, {'id': 4, 'tipo': 'pantalon', 'talle': 38}, {'id': 5, 'tipo': 'pantalon', 'talle': 39}, {'id': 6, 'tipo': 'pantalon', 'talle': 40}, {'id': 7, 'tipo': 'pantalon', 'talle': 41}, {'id': 8, 'tipo': 'pantalon', 'talle': 42}, {'id': 9, 'tipo': 'pantalon', 'talle': 43}, {'id': 10, 'tipo': 'pantalon', 'talle': 44}, {'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}, {'id': 16, 'tipo': 'saco', 'talle': 'XS'}, {'id': 17, 'tipo': 'saco', 'talle': 'S'}, {'id': 18, 'tipo': 'saco', 'talle': 'M', 'enStock': False}, {'id': 19, 'tipo': 'saco', 'talle': 'L'}, {'id': 20, 'tipo': 'saco', 'talle': 'XL'}]
+[{'id': 1, 'tipo': 'pantalon', 'talle': 35}, {'id': 2, 'tipo': 'pantalon', 'talle': 36}, {'id': 3, 'tipo': 'pantalon', 'talle': 37}, {'id': 4, 'tipo': 'pantalon', 'talle': 38}, {'id': 5, 'tipo': 'pantalon', 'talle': 39}, {'id': 6, 'tipo': 'pantalon', 'talle': 40}, {'id': 7, 'tipo': 'pantalon', 'talle': 41}, {'id': 8, 'tipo': 'pantalon', 'talle': 42}, {'id': 9, 'tipo': 'pantalon', 'talle': 43}, {'id': 10, 'tipo': 'pantalon', 'talle': 44}, {'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}, {'id': 16, 'tipo': 'saco', 'talle': 'XS'}, {'id': 17, 'tipo': 'saco', 'talle': 'S'}, {'id': 18, 'tipo': 'saco', 'talle': 'M', 'enStock': False}, {'id': 19, 'tipo': 'saco', 'talle': 'L'}, {'id': 20, 'tipo': 'saco', 'talle': 'XL'}]
+>>> >>> r.json()['tipo']
+  File "<stdin>", line 1
+    >>> r.json()['tipo']
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1
+    Traceback (most recent call last):
+                    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>> TypeError: list indices must be integers or slices, not str
+  File "<stdin>", line 1
+    TypeError: list indices must be integers or slices, not str
+                    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()['tipo']
+  File "<stdin>", line 1
+    >>> r.json()['tipo']
+    ^
+SyntaxError: invalid syntax
+>>> Traceback (most recent call last):
+  File "<stdin>", line 1
+    Traceback (most recent call last):
+                    ^
+SyntaxError: invalid syntax
+>>>   File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1
+    File "<stdin>", line 1, in <module>
+IndentationError: unexpected indent
+>>> TypeError: list indices must be integers or slices, not str
+  File "<stdin>", line 1
+    TypeError: list indices must be integers or slices, not str
+                    ^
+SyntaxError: invalid syntax
+>>> >>> r = requests.get('https://macowins-server.herokuapp.com/prendas?tipo=remera')
+  File "<stdin>", line 1
+    >>> r = requests.get('https://macowins-server.herokuapp.com/prendas?tipo=remera')
+    ^
+SyntaxError: invalid syntax
+>>> >>> r.json()
+  File "<stdin>", line 1
+    >>> r.json()
+    ^
+SyntaxError: invalid syntax
+>>> [{'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}]
+[{'id': 11, 'tipo': 'remera', 'talle': 'XS'}, {'id': 12, 'tipo': 'remera', 'talle': 'S'}, {'id': 13, 'tipo': 'remera', 'talle': 'M'}, {'id': 14, 'tipo': 'remera', 'talle': 'L'}, {'id': 15, 'tipo': 'remera', 'talle': 'XL'}]
+>>>
